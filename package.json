@@ -1,0 +1,23 @@
+{
+  "name": "chamnex-electrical",
+  "version": "1.0.0",
+  "description": "ChamNex Electrical Installation Services - Professional Electrical & Solar Installation Services in Nairobi",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000"
+  },
+  "keywords": [
+    "electrical",
+    "solar",
+    "installation",
+    "nairobi",
+    "kenya"
+  ],
+  "author": "Charles Muiruri",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Winky254y/Chamnex001"
+  }
+}
