@@ -410,9 +410,22 @@
             <h2 class="section-title">Common <span class="highlight">Questions</span></h2>
             <p class="section-subtitle">Find answers to your most asked questions about our services</p>
 
+            <!-- FAQ Search/Filter -->
+            <div class="faq-search-container">
+                <input type="text" id="faqSearch" class="faq-search" placeholder="🔍 Search questions..." aria-label="Search FAQ questions">
+                <div class="faq-category-filters">
+                    <button class="faq-filter-btn active" data-category="all">All</button>
+                    <button class="faq-filter-btn" data-category="solar">Solar</button>
+                    <button class="faq-filter-btn" data-category="electrical">Electrical</button>
+                    <button class="faq-filter-btn" data-category="service">Service</button>
+                </div>
+            </div>
+
             <div class="faq-grid">
-                <div class="faq-item">
+                <!-- Solar FAQs -->
+                <div class="faq-item" data-category="solar">
                     <div class="faq-header">
+                        <div class="faq-icon">☀️</div>
                         <h3>How much does a solar installation cost?</h3>
                         <span class="faq-toggle">+</span>
                     </div>
@@ -421,8 +434,10 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <!-- Service FAQs -->
+                <div class="faq-item" data-category="service">
                     <div class="faq-header">
+                        <div class="faq-icon">✅</div>
                         <h3>What's your warranty on installations?</h3>
                         <span class="faq-toggle">+</span>
                     </div>
@@ -431,8 +446,10 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <!-- Electrical FAQs -->
+                <div class="faq-item" data-category="electrical">
                     <div class="faq-header">
+                        <div class="faq-icon">🚨</div>
                         <h3>Do you offer emergency services?</h3>
                         <span class="faq-toggle">+</span>
                     </div>
@@ -441,8 +458,10 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <!-- Service FAQs -->
+                <div class="faq-item" data-category="service">
                     <div class="faq-header">
+                        <div class="faq-icon">⏱️</div>
                         <h3>How long does installation take?</h3>
                         <span class="faq-toggle">+</span>
                     </div>
@@ -451,8 +470,10 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <!-- Service FAQs -->
+                <div class="faq-item" data-category="service">
                     <div class="faq-header">
+                        <div class="faq-icon">💳</div>
                         <h3>Do you provide financing options?</h3>
                         <span class="faq-toggle">+</span>
                     </div>
@@ -461,8 +482,10 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
+                <!-- Electrical FAQs -->
+                <div class="faq-item" data-category="electrical">
                     <div class="faq-header">
+                        <div class="faq-icon">📜</div>
                         <h3>Are you licensed and insured?</h3>
                         <span class="faq-toggle">+</span>
                     </div>
@@ -470,6 +493,83 @@
                         <p>Absolutely! All our electricians are fully licensed by the Energy and Petroleum Regulatory Authority (EPRA). We maintain comprehensive liability and indemnity insurance for all our work. Your safety and peace of mind are our top priorities.</p>
                     </div>
                 </div>
+
+                <!-- Solar FAQs -->
+                <div class="faq-item" data-category="solar">
+                    <div class="faq-header">
+                        <div class="faq-icon">🌧️</div>
+                        <h3>Do solar panels work in rainy weather?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-content">
+                        <p>Solar panels still generate electricity on cloudy and rainy days, though at reduced efficiency. Modern panels can generate 10-25% of their rated capacity even in poor weather. Kenya's climate is ideal for solar energy year-round. We design systems accounting for seasonal variations.</p>
+                    </div>
+                </div>
+
+                <!-- Solar FAQs -->
+                <div class="faq-item" data-category="solar">
+                    <div class="faq-header">
+                        <div class="faq-icon">🔋</div>
+                        <h3>How long do solar batteries last?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-content">
+                        <p>High-quality lithium batteries typically last 10-15 years with proper maintenance. We use premium brands with warranties covering this period. Lifepo4 batteries we install can even last 20+ years. Regular maintenance ensures optimal performance and longevity.</p>
+                    </div>
+                </div>
+
+                <!-- Electrical FAQs -->
+                <div class="faq-item" data-category="electrical">
+                    <div class="faq-header">
+                        <div class="faq-icon">⚡</div>
+                        <h3>What causes frequent power outages in homes?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-content">
+                        <p>Common causes include overloaded circuits, faulty wiring, aging electrical panels, and power distribution issues. Our electricians can diagnose the root cause and recommend solutions. Many issues can be prevented with proper installation and regular maintenance checks.</p>
+                    </div>
+                </div>
+
+                <!-- Service FAQs -->
+                <div class="faq-item" data-category="service">
+                    <div class="faq-header">
+                        <div class="faq-icon">💬</div>
+                        <h3>How can I get a free quotation?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-content">
+                        <p>It's simple! Call us at 0722 905 171, WhatsApp us, or fill out our contact form on this website. We'll schedule a free site visit where our experts assess your needs and provide a detailed, obligation-free quotation. No hidden costs!</p>
+                    </div>
+                </div>
+
+                <!-- Solar FAQs -->
+                <div class="faq-item" data-category="solar">
+                    <div class="faq-header">
+                        <div class="faq-icon">📊</div>
+                        <h3>How much money will I save with solar?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-content">
+                        <p>Savings depend on your current electricity consumption and system size. Most customers save 60-90% on monthly electricity bills. A typical 5kW system saves customers KES 5,000-15,000 per month. Your investment pays for itself in 3-5 years, then it's free electricity!</p>
+                    </div>
+                </div>
+
+                <!-- Electrical FAQs -->
+                <div class="faq-item" data-category="electrical">
+                    <div class="faq-header">
+                        <div class="faq-icon">🏠</div>
+                        <h3>Do I need a home rewiring?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-content">
+                        <p>Not always. We assess your home's electrical system and recommend upgrades only if necessary. If your home is over 30 years old, has outdated wiring, or you're adding new circuits, rewiring might be beneficial. We'll advise you during our consultation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ No Results Message -->
+            <div class="faq-no-results" id="faqNoResults">
+                <p>❌ No questions found. Try a different search or filter.</p>
             </div>
         </div>
     </section>
