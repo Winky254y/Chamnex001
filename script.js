@@ -46,6 +46,62 @@ if (isMobile()) {
     });
 }
 
+// ===== ENHANCED NAVBAR INTERACTIVITY =====
+const navbar = document.querySelector('nav');
+const navCTAButtons = document.querySelectorAll('.nav-cta .cta-button');
+
+// Navbar background change on scroll
+let lastScrollTop = 0;
+window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (navbar) {
+        if (scrollTop > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
+// Navbar CTA buttons ripple effect
+navCTAButtons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        // Create ripple effect
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+    });
+    
+    // Add touch feedback
+    btn.addEventListener('touchstart', function() {
+        this.style.opacity = '0.9';
+    });
+    
+    btn.addEventListener('touchend', function() {
+        this.style.opacity = '1';
+    });
+});
+
+// Nav links hover animation enhancement
+const navLinksElements = document.querySelectorAll('.nav-links a');
+navLinksElements.forEach(link => {
+    link.addEventListener('mouseenter', function() {
+        this.style.transition = 'all 0.3s ease';
+    });
+});
+
 // ===== FAQ ACCORDION WITH SEARCH & FILTER =====
 const faqHeaders = document.querySelectorAll('.faq-header');
 const faqSearch = document.getElementById('faqSearch');
@@ -329,17 +385,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Gallery Filter with Smooth Transitions
 const filterBtns = document.querySelectorAll('.filter-btn');
 const galleryItems = document.querySelectorAll('.gallery-item');
+const visibleCountSpan = document.getElementById('visibleCount');
 
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        const filter = btn.textContent.trim();
+        const filter = btn.getAttribute('data-filter');
+        let visibleCount = 0;
 
         galleryItems.forEach((item, index) => {
-            const tag = item.querySelector('.gallery-tag').textContent.trim();
-            const shouldShow = filter === 'All' || tag === filter;
+            const category = item.getAttribute('data-category');
+            const shouldShow = filter === 'all' || category === filter;
 
             if (shouldShow) {
                 item.style.display = 'block';
@@ -347,10 +405,53 @@ filterBtns.forEach(btn => {
                 setTimeout(() => {
                     item.style.animation = `slideInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 0.1}s forwards`;
                 }, 10);
+                visibleCount++;
             } else {
                 item.style.display = 'none';
             }
         });
+
+        // Update visible count
+        if (visibleCountSpan) {
+            visibleCountSpan.textContent = visibleCount;
+        }
+
+        // Smooth scroll animation
+        const gallery = document.querySelector('.gallery-grid');
+        if (gallery) {
+            gallery.style.animation = 'fadeIn 0.3s ease';
+        }
+    });
+
+    // Add touch feedback for mobile
+    btn.addEventListener('touchstart', function() {
+        this.style.transform = 'scale(0.95)';
+    });
+
+    btn.addEventListener('touchend', function() {
+        this.style.transform = '';
+    });
+});
+
+// Gallery item button interactions
+const galleryBtns = document.querySelectorAll('.gallery-btn');
+galleryBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const item = btn.closest('.gallery-item');
+        const overlay = item.querySelector('.gallery-overlay-info');
+        
+        if (overlay) {
+            overlay.style.animation = 'slideInUp 0.4s ease';
+        }
+    });
+});
+
+// Gallery item hover effects for mobile
+galleryItems.forEach(item => {
+    item.addEventListener('touchstart', function(e) {
+        galleryItems.forEach(i => i.classList.remove('touch-active'));
+        this.classList.add('touch-active');
     });
 });
 

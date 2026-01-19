@@ -9,22 +9,33 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <div class="container">
             <div class="logo">
-                ✦Chamnex
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Chamnex</span>
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#gallery" class="nav-link">Portfolio</a></li>
+                <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <a href="tel:0722905171" class="cta-button">
-                ☎ 0722 905 171
-            </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <div class="nav-cta">
+                <a href="https://wa.me/254722905171" class="cta-button whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+                    💬 WhatsApp
+                </a>
+                <a href="tel:0722905171" class="cta-button call-btn" title="Call us now">
+                    ☎ Call
+                </a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -116,78 +127,205 @@
         <h2 class="section-title">Our <span class="highlight">Work</span></h2>
         <p class="section-subtitle">See the quality of our installations and repairs across Kenya</p>
 
-        <div class="gallery-filters">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Solar</button>
-            <button class="filter-btn">Lighting</button>
-            <button class="filter-btn">Electrical</button>
+        <div class="gallery-filters-wrapper">
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">
+                    <span class="filter-icon">🎯</span>
+                    <span>All Projects</span>
+                </button>
+                <button class="filter-btn" data-filter="Solar">
+                    <span class="filter-icon">☀️</span>
+                    <span>Solar</span>
+                </button>
+                <button class="filter-btn" data-filter="Lighting">
+                    <span class="filter-icon">💡</span>
+                    <span>Lighting</span>
+                </button>
+                <button class="filter-btn" data-filter="Electrical">
+                    <span class="filter-icon">⚙️</span>
+                    <span>Electrical</span>
+                </button>
+            </div>
+            <div class="portfolio-count">
+                <span id="visibleCount">12</span> projects shown
+            </div>
         </div>
 
         <div class="gallery-grid">
 
             <!-- Solar - Bright sunny roofs + workers installing -->
-            <div class="gallery-item">
-                <img src="https://www.electricaltechnology.org/wp-content/uploads/2013/05/Wiring-of-the-Distribution-Board-with-RCD-Single-Phase-Home-Supply-From-Utility-Pole-Energy-Meter-to-the-Consumer-Unit.png" 
-                     alt="Professional Solar Panel Installation on Roof - Kenya" loading="lazy">
-                <span class="gallery-tag">Solar</span>
+            <div class="gallery-item" data-category="Solar">
+                <div class="gallery-img-wrapper">
+                    <img src="https://www.electricaltechnology.org/wp-content/uploads/2013/05/Wiring-of-the-Distribution-Board-with-RCD-Single-Phase-Home-Supply-From-Utility-Pole-Energy-Meter-to-the-Consumer-Unit.png" 
+                         alt="Professional Solar Panel Installation on Roof - Kenya" loading="lazy">
+                    <div class="gallery-overlay-info">
+                        <h3>Professional Installation</h3>
+                        <p>Solar Panels</p>
+                    </div>
+                </div>
+                <span class="gallery-tag">☀️ Solar</span>
+                <button class="gallery-btn" title="View details">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
 
-            <div class="gallery-item">
-                <img src="https://chariotenergy.com/wp-content/uploads/2023/11/pexels-kindel-media-9875445-1-scaled-1-1024x768.jpg" 
-                     alt="Clean Solar Panels on Modern Tiled Roof - Sunny Day" loading="lazy">
-                <span class="gallery-tag">Solar</span>
+            <div class="gallery-item" data-category="Solar">
+                <div class="gallery-img-wrapper">
+                    <img src="https://chariotenergy.com/wp-content/uploads/2023/11/pexels-kindel-media-9875445-1-scaled-1-1024x768.jpg" 
+                         alt="Clean Solar Panels on Modern Tiled Roof - Sunny Day" loading="lazy">
+                    <div class="gallery-overlay-info">
+                        <h3>Residential Install</h3>
+                        <p>Home Solar System</p>
+                    </div>
+                </div>
+                <span class="gallery-tag">☀️ Solar</span>
+                <button class="gallery-btn" title="View details">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
 
-            <div class="gallery-item">
-                <img src="https://www.pretapower.com/wp-content/uploads/2025/08/Commercial-Solar-Install-on-Corrugated-Metal-Warehouse-Roof.jpg" 
-                     alt="Workers Installing Solar Panels on Large Roof - Professional Team" loading="lazy">
-                <span class="gallery-tag">Solar</span>
+            <div class="gallery-item" data-category="Solar">
+                <div class="gallery-img-wrapper">
+                    <img src="https://www.pretapower.com/wp-content/uploads/2025/08/Commercial-Solar-Install-on-Corrugated-Metal-Warehouse-Roof.jpg" 
+                         alt="Workers Installing Solar Panels on Large Roof - Professional Team" loading="lazy">
+                    <div class="gallery-overlay-info">
+                        <h3>Commercial Project</h3>
+                        <p>Large Scale Installation</p>
+                    </div>
+                </div>
+                <span class="gallery-tag">☀️ Solar</span>
+                <button class="gallery-btn" title="View details">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
 
-            <div class="gallery-item">
-                <img src="https://d3aoa9kmi7f346.cloudfront.net/containers/assets/kiviranna-4-1-1703070900.jpg/665907b4ee623cc7511beec4ac46d36c/kiviranna-4-1-1703070900.jpg" 
-                     alt="Full Solar Roof Installation - Bright Kenyan Sunshine" loading="lazy">
-                <span class="gallery-tag">Solar</span>
+            <div class="gallery-item" data-category="Solar">
+                <div class="gallery-img-wrapper">
+                    <img src="https://d3aoa9kmi7f346.cloudfront.net/containers/assets/kiviranna-4-1-1703070900.jpg/665907b4ee623cc7511beec4ac46d36c/kiviranna-4-1-1703070900.jpg" 
+                         alt="Full Solar Roof Installation - Bright Kenyan Sunshine" loading="lazy">
+                    <div class="gallery-overlay-info">
+                        <h3>Full Roof System</h3>
+                        <p>Complete Solar Setup</p>
+                    </div>
+                </div>
+                <span class="gallery-tag">☀️ Solar</span>
+                <button class="gallery-btn" title="View details">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
 
             <!-- Lighting - Warm colorful modern interiors with LED glow -->
-            <div class="gallery-item">
-                <img src="https://cdn11.bigcommerce.com/s-43185/images/stencil/original/image-manager/livingroom-indirect-lighting.jpg" 
-                     alt="Cozy Living Room with Warm LED Ambient Strip Lighting" loading="lazy">
-                <span class="gallery-tag">Lighting</span>
+            <div class="gallery-item" data-category="Lighting">
+                <div class="gallery-img-wrapper">
+                    <img src="https://cdn11.bigcommerce.com/s-43185/images/stencil/original/image-manager/livingroom-indirect-lighting.jpg" 
+                         alt="Cozy Living Room with Warm LED Ambient Strip Lighting" loading="lazy">
+                    <div class="gallery-overlay-info">
+                        <h3>Ambient Lighting</h3>
+                        <p>Living Room Design</p>
+                    </div>
+                </div>
+                <span class="gallery-tag">💡 Lighting</span>
+                <button class="gallery-btn" title="View details">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
 
-            <div class="gallery-item">
-                <img src="https://www.simplelighting.co.uk/blog/wp-content/uploads/2023/11/warm-living-room-1021x580.jpg" 
-                     alt="Modern Kenyan-Style Interior with Soft Colorful Ambient LEDs" loading="lazy">
-                <span class="gallery-tag">Lighting</span>
+            <div class="gallery-item" data-category="Lighting">
+                <div class="gallery-img-wrapper">
+                    <img src="https://www.simplelighting.co.uk/blog/wp-content/uploads/2023/11/warm-living-room-1021x580.jpg" 
+                         alt="Modern Kenyan-Style Interior with Soft Colorful Ambient LEDs" loading="lazy">
+                    <div class="gallery-overlay-info">
+                        <h3>Modern Interior</h3>
+                        <p>Accent Lighting</p>
+                    </div>
+                </div>
+                <span class="gallery-tag">💡 Lighting</span>
+                <button class="gallery-btn" title="View details">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
 
-            <div class="gallery-item">
-                <img src="https://www.wanderlifestudios.com/wp-content/uploads/2023/02/classy-led-room-aesthetic-strip-lights_purple-neon-living-room.jpeg" 
-                     alt="Elegant Living Room with Vibrant RGB LED Strip Lighting" loading="lazy">
-                <span class="gallery-tag">Lighting</span>
+            <div class="gallery-item" data-category="Lighting">
+                <div class="gallery-img-wrapper">
+                    <img src="https://www.wanderlifestudios.com/wp-content/uploads/2023/02/classy-led-room-aesthetic-strip-lights_purple-neon-living-room.jpeg" 
+                         alt="Elegant Living Room with Vibrant RGB LED Strip Lighting" loading="lazy">
+                    <div class="gallery-overlay-info">
+                        <h3>RGB Strip Lights</h3>
+                        <p>Premium Installation</p>
+                    </div>
+                </div>
+                <span class="gallery-tag">💡 Lighting</span>
+                <button class="gallery-btn" title="View details">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
 
             <!-- Electrical - Clean panels with colorful professional wiring -->
-            <div class="gallery-item">
-                <img src="https://www.electricaltechnology.org/wp-content/uploads/2013/05/Wiring-of-the-Distribution-Board-Single-Phase-Supply-From-Utility-Pole-Energy-Meter-to-the-Consumer-Unit.png" 
-                     alt="Neat Modern Electrical Consumer Unit & Colorful Wiring" loading="lazy">
-                <span class="gallery-tag">Electrical</span>
+            <div class="gallery-item" data-category="Electrical">
+                <div class="gallery-img-wrapper">
+                    <img src="https://www.electricaltechnology.org/wp-content/uploads/2013/05/Wiring-of-the-Distribution-Board-Single-Phase-Supply-From-Utility-Pole-Energy-Meter-to-the-Consumer-Unit.png" 
+                         alt="Neat Modern Electrical Consumer Unit & Colorful Wiring" loading="lazy">
+                    <div class="gallery-overlay-info">
+                        <h3>Consumer Unit</h3>
+                        <p>Professional Wiring</p>
+                    </div>
+                </div>
+                <span class="gallery-tag">⚙️ Electrical</span>
+                <button class="gallery-btn" title="View details">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
 
-            <div class="gallery-item">
-                <img src="https://c8.alamy.com/comp/PJ14H3/close-up-of-white-frame-panel-electrical-switch-board-with-colourful-cables-automatic-circuit-switchers-breakers-and-fuses-PJ14H3.jpg" 
-                     alt="Professional Distribution Board with Organized Colorful Cables" loading="lazy">
-                <span class="gallery-tag">Electrical</span>
+            <div class="gallery-item" data-category="Electrical">
+                <div class="gallery-img-wrapper">
+                    <img src="https://c8.alamy.com/comp/PJ14H3/close-up-of-white-frame-panel-electrical-switch-board-with-colourful-cables-automatic-circuit-switchers-breakers-and-fuses-PJ14H3.jpg" 
+                         alt="Professional Distribution Board with Organized Colorful Cables" loading="lazy">
+                    <div class="gallery-overlay-info">
+                        <h3>Distribution Board</h3>
+                        <p>Circuit Installation</p>
+                    </div>
+                </div>
+                <span class="gallery-tag">⚙️ Electrical</span>
+                <button class="gallery-btn" title="View details">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
 
-            <div class="gallery-item">
-                <img src="https://assets.sc.hager.com/uk/-/media/project/hagerdeep/united-kingdom/hager/b2b/products/promo-pages/design-consumer-units/gallery_design_02.jpg?h=767&la=en-gb&hash=638A4111CFDCB84D3F038DD3DBE2FE57" 
-                     alt="Clean Modern Electrical Panel Upgrade - High Quality Wiring" loading="lazy">
-                <span class="gallery-tag">Electrical</span>
+            <div class="gallery-item" data-category="Electrical">
+                <div class="gallery-img-wrapper">
+                    <img src="https://assets.sc.hager.com/uk/-/media/project/hagerdeep/united-kingdom/hager/b2b/products/promo-pages/design-consumer-units/gallery_design_02.jpg?h=767&la=en-gb&hash=638A4111CFDCB84D3F038DD3DBE2FE57" 
+                         alt="Clean Modern Electrical Panel Upgrade - High Quality Wiring" loading="lazy">
+                    <div class="gallery-overlay-info">
+                        <h3>Panel Upgrade</h3>
+                        <p>Modern System</p>
+                    </div>
+                </div>
+                <span class="gallery-tag">⚙️ Electrical</span>
+                <button class="gallery-btn" title="View details">
+                    <span>View Details</span>
+                    <span class="arrow">→</span>
+                </button>
             </div>
 
+        </div>
+
+        <div class="portfolio-cta">
+            <p>Interested in our work?</p>
+            <a href="https://wa.me/254722905171" class="portfolio-btn" target="_blank">
+                💬 Request a Quote
+            </a>
+            <a href="#contact" class="portfolio-btn secondary">
+                📧 Get in Touch
+            </a>
         </div>
     </div>
 </section>

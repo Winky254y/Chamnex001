@@ -55,7 +55,7 @@ body {
 
 /* Navigation */
 nav {
-    background: rgba(15, 39, 68, 0.85);
+    background: rgba(15, 39, 68, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     color: white;
@@ -63,14 +63,16 @@ nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(251, 146, 60, 0.1);
+    border-bottom: 2px solid rgba(251, 146, 60, 0.2);
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 nav.scrolled {
-    padding: 0.75rem 2rem;
-    box-shadow: 0 8px 32px rgba(15, 39, 68, 0.3);
+    padding: 0.5rem 2rem;
+    box-shadow: 0 8px 32px rgba(15, 39, 68, 0.4);
+    background: rgba(15, 39, 68, 0.98);
 }
 
 nav .container {
@@ -81,73 +83,138 @@ nav .container {
     align-items: center;
     padding: 0 1rem;
     width: 100%;
+    gap: 2rem;
 }
 
 .logo {
-    font-size: 1.3rem;
-    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: 800;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--secondary-color);
-    letter-spacing: 1px;
+    color: white;
+    letter-spacing: 2px;
     transition: all 0.3s ease;
     perspective: 1000px;
     flex-shrink: 0;
+    cursor: pointer;
+}
+
+.logo-icon {
+    font-size: 1.8rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.logo-text {
+    background: linear-gradient(135deg, var(--secondary-color), #f97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .logo:hover {
-    transform: translateZ(10px) scale(1.05);
+    transform: scale(1.08);
+}
+
+.logo:hover .logo-icon {
+    animation: pulse 0.5s ease-in-out infinite;
 }
 
 .nav-links {
     display: flex;
-    gap: 2.5rem;
+    gap: 0.5rem;
     list-style: none;
     flex: 1;
     justify-content: center;
-    margin: 0 2rem;
+    margin: 0;
+}
+
+.nav-links li {
+    position: relative;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    font-size: 1rem;
+    font-size: 0.95rem;
     position: relative;
-    padding: 0.5rem 0.25rem;
+    padding: 0.75rem 1.2rem;
     min-height: 48px;
     display: flex;
     align-items: center;
+    border-radius: 8px;
+    letter-spacing: 0.3px;
 }
 
-.nav-links a::after {
+.nav-links a::before {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
-    background: var(--secondary-color);
+    height: 3px;
+    background: linear-gradient(90deg, var(--secondary-color), #f97316);
     transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 3px;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(251, 146, 60, 0.05);
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
 }
 
 .nav-links a:hover {
     color: var(--secondary-color);
+    transform: translateY(-2px);
 }
 
 .nav-links a:hover::after {
+    opacity: 1;
+}
+
+.nav-links a:hover::before {
     width: 100%;
+}
+
+.nav-cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-shrink: 0;
 }
 
 .cta-button {
     background: linear-gradient(135deg, var(--secondary-color), #f97316);
     color: white;
-    padding: 0.75rem 1.5rem;
+    padding: 0.7rem 1.3rem;
     border-radius: 25px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(251, 146, 60, 0.3);
+    position: relative;
+    overflow: hidden;
+    min-height: 48px;
+    min-width: 130px;
+    justify-content: center;
+}
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     border: none;
     cursor: pointer;
@@ -180,6 +247,23 @@ nav .container {
 
 .cta-button:hover::before {
     left: 100%;
+}
+
+/* Ripple Effect for Buttons */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
 }
 
 .container {
@@ -611,30 +695,49 @@ nav .container {
     background: #f3f4f6;
 }
 
+.gallery-filters-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
 .gallery-filters {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     justify-content: center;
-    margin-bottom: 3rem;
     flex-wrap: wrap;
+    padding: 1.5rem;
+    background: rgba(251, 146, 60, 0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(251, 146, 60, 0.1);
 }
 
 .filter-btn {
     background: white;
     color: var(--text-color);
-    padding: 0.75rem 1.75rem;
+    padding: 0.85rem 1.8rem;
     border-radius: 25px;
     border: 2px solid #e5e7eb;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     overflow: hidden;
-    min-height: 48px;
+    min-height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 0.5rem;
     font-size: 0.95rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.filter-icon {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
 }
 
 .filter-btn::before {
@@ -651,11 +754,15 @@ nav .container {
 .filter-btn:hover {
     border-color: var(--secondary-color);
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(251, 146, 60, 0.1);
+    box-shadow: 0 8px 25px rgba(251, 146, 60, 0.15);
+}
+
+.filter-btn:hover .filter-icon {
+    transform: scale(1.2) rotate(10deg);
 }
 
 .filter-btn:active {
-    transform: scale(0.98);
+    transform: scale(0.96);
 }
 
 .filter-btn:focus {
@@ -671,14 +778,21 @@ nav .container {
     background: linear-gradient(135deg, var(--secondary-color), #f97316);
     color: white;
     border-color: var(--secondary-color);
-    box-shadow: 0 8px 25px rgba(251, 146, 60, 0.3);
-    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(251, 146, 60, 0.4);
+    transform: translateY(-3px) scale(1.05);
+}
+
+.portfolio-count {
+    font-size: 0.9rem;
+    color: var(--gray-text);
+    font-weight: 600;
 }
 
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    gap: 2rem;
+    margin-bottom: 3rem;
 }
 
 .gallery-item {
@@ -688,8 +802,18 @@ nav .container {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    height: 250px;
+    height: 280px;
     perspective: 1000px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+}
+
+.gallery-img-wrapper {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    flex: 1;
 }
 
 .gallery-item::after {
@@ -699,15 +823,15 @@ nav .container {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(251, 146, 60, 0.3), transparent);
+    background: linear-gradient(135deg, rgba(251, 146, 60, 0.2), transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 2;
 }
 
 .gallery-item:hover {
-    transform: translateY(-15px) scale(1.05);
-    box-shadow: 0 25px 50px rgba(251, 146, 60, 0.3);
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(251, 146, 60, 0.25);
 }
 
 .gallery-item:hover::after {
@@ -718,35 +842,223 @@ nav .container {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .gallery-item:hover img {
-    transform: scale(1.1) rotate(2deg);
-    filter: brightness(1.1) contrast(1.1);
+    transform: scale(1.12) rotate(3deg);
+    filter: brightness(1.15) contrast(1.1);
+}
+
+.gallery-overlay-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    color: white;
+    padding: 2rem 1rem 1rem;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 3;
+}
+
+.gallery-item:hover .gallery-overlay-info {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.gallery-overlay-info h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+}
+
+.gallery-overlay-info p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .gallery-tag {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: linear-gradient(135deg, rgba(251, 146, 60, 0.9), rgba(249, 115, 22, 0.9));
+    background: linear-gradient(135deg, rgba(251, 146, 60, 0.95), rgba(249, 115, 22, 0.95));
     backdrop-filter: blur(10px);
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+    padding: 0.6rem 1.1rem;
+    border-radius: 25px;
     font-size: 0.85rem;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(251, 146, 60, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    z-index: 3;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(251, 146, 60, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: 4;
     transition: all 0.3s ease;
 }
 
 .gallery-item:hover .gallery-tag {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(251, 146, 60, 0.4);
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(251, 146, 60, 0.5);
 }
+
+.gallery-btn {
+    background: linear-gradient(135deg, var(--secondary-color), #f97316);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem;
+    min-height: 45px;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(251, 146, 60, 0.2);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+}
+
+.gallery-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.5s ease;
+}
+
+.gallery-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(251, 146, 60, 0.5);
+}
+
+.gallery-btn:hover::before {
+    left: 100%;
+}
+
+.gallery-btn:active {
+    transform: scale(0.98) translateY(-1px);
+}
+
+.arrow {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: inline-block;
+}
+
+.gallery-btn:hover .arrow {
+    transform: translateX(4px) rotate(0deg);
+}
+
+.portfolio-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, rgba(251, 146, 60, 0.08), rgba(249, 115, 22, 0.04));
+    border-radius: 20px;
+    border: 2px solid rgba(251, 146, 60, 0.15);
+    text-align: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.4s ease;
+}
+
+.portfolio-cta:hover {
+    border-color: rgba(251, 146, 60, 0.3);
+    background: linear-gradient(135deg, rgba(251, 146, 60, 0.12), rgba(249, 115, 22, 0.08));
+    box-shadow: 0 8px 32px rgba(251, 146, 60, 0.1);
+}
+
+.portfolio-cta p {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+.portfolio-cta .portfolio-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.portfolio-btn {
+    background: linear-gradient(135deg, var(--secondary-color), #f97316);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 15px rgba(251, 146, 60, 0.3);
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+}
+
+.portfolio-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: left 0.5s ease;
+}
+
+.portfolio-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(251, 146, 60, 0.45);
+}
+
+.portfolio-btn:hover::before {
+    left: 100%;
+}
+
+.portfolio-btn:active {
+    transform: scale(0.98) translateY(-2px);
+}
+
+.portfolio-btn.secondary {
+    background: white;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(251, 146, 60, 0.15);
+    position: relative;
+}
+
+.portfolio-btn.secondary::before {
+    background: rgba(251, 146, 60, 0.1);
+}
+
+.portfolio-btn.secondary:hover {
+    background: rgba(251, 146, 60, 0.08);
+    box-shadow: 0 8px 25px rgba(251, 146, 60, 0.2);
+    border-color: rgba(251, 146, 60, 0.8);
+}
+
+.portfolio-btn.secondary:hover::before {
+    left: 100%;
+}
+
 
 .gallery-overlay {
     position: absolute;
