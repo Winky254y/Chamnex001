@@ -102,106 +102,13 @@ navLinksElements.forEach(link => {
     });
 });
 
-// ===== FAQ ACCORDION WITH SEARCH & FILTER =====
-const faqHeaders = document.querySelectorAll('.faq-header');
-const faqSearch = document.getElementById('faqSearch');
-const faqFilterButtons = document.querySelectorAll('.faq-filter-btn');
-const faqItems = document.querySelectorAll('.faq-item');
-const faqNoResults = document.getElementById('faqNoResults');
-
-// FAQ Toggle Function
-faqHeaders.forEach(header => {
-    const toggleFAQ = (e) => {
-        e.preventDefault();
-        const faqItem = header.parentElement;
-        const isActive = faqItem.classList.contains('active');
-
-        // Close all open items
-        document.querySelectorAll('.faq-item:not(.hidden)').forEach(item => {
-            item.classList.remove('active');
-        });
-
-        // Open clicked item if it was closed
-        if (!isActive && !faqItem.classList.contains('hidden')) {
-            faqItem.classList.add('active');
-            // Scroll to item on mobile
-            if (isMobile()) {
-                setTimeout(() => {
-                    faqItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 300);
-            }
-        }
-    };
-
-    header.addEventListener('click', toggleFAQ);
-    header.addEventListener('touchend', toggleFAQ);
-});
-
-// FAQ Search Functionality
-if (faqSearch) {
-    faqSearch.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        let visibleCount = 0;
-
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-header h3').textContent.toLowerCase();
-            const answer = item.querySelector('.faq-content p').textContent.toLowerCase();
-            const matches = question.includes(searchTerm) || answer.includes(searchTerm);
-
-            if (searchTerm === '' || matches) {
-                item.classList.remove('hidden');
-                visibleCount++;
-            } else {
-                item.classList.add('hidden');
-                item.classList.remove('active');
-            }
-        });
-
-        // Show/hide no results message
-        if (visibleCount === 0) {
-            faqNoResults.classList.add('show');
-        } else {
-            faqNoResults.classList.remove('show');
-        }
-    });
-}
-
-// FAQ Filter Functionality
-if (faqFilterButtons.length > 0) {
-    faqFilterButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const category = button.getAttribute('data-category');
-
-            // Update active button
-            faqFilterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            let visibleCount = 0;
-
-            // Filter items
-            faqItems.forEach(item => {
-                if (category === 'all' || item.getAttribute('data-category') === category) {
-                    item.classList.remove('hidden');
-                    visibleCount++;
-                } else {
-                    item.classList.add('hidden');
-                    item.classList.remove('active');
-                }
-            });
-
-            // Show/hide no results message
-            if (visibleCount === 0) {
-                faqNoResults.classList.add('show');
-            } else {
-                faqNoResults.classList.remove('show');
-            }
-
-            // Clear search on filter change
-            if (faqSearch) {
-                faqSearch.value = '';
-            }
-        });
-    });
+// ===== FAQ =====
+// FAQ is implemented inline inside the `#faq` section (scoped styles and script).
+// To avoid duplicate listeners and conflicts, do not initialize FAQ behavior here if the
+// markup already contains handlers. This is a safe no-op placeholder.
+if (!window._faqHandledByInlineScript && document.querySelector('#faq')) {
+    // mark as handled to avoid accidental re-init
+    window._faqHandledByInlineScript = true;
 }
 
 // ===== CONTACT FORM HANDLING WITH EMAIL =====
