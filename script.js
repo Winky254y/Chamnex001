@@ -289,6 +289,45 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// ===== STATS COUNTER ANIMATION =====
+const animateStatCounters = () => {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                entry.target.classList.add('counted');
+                const target = parseInt(entry.target.getAttribute('data-target'));
+                const isRating = entry.target.parentElement.getAttribute('data-rating') === 'star';
+                
+                if (isRating) {
+                    // For rating, just set the value with star
+                    entry.target.textContent = target + ' ⭐';
+                } else {
+                    // Animate counter
+                    let current = 0;
+                    const increment = target / 40;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            entry.target.textContent = target + '+';
+                            clearInterval(timer);
+                        } else {
+                            entry.target.textContent = Math.floor(current);
+                        }
+                    }, 30);
+                }
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    statNumbers.forEach(num => observer.observe(num));
+};
+
+// Start stats animation when page loads
+document.addEventListener('DOMContentLoaded', animateStatCounters);
+
 // Gallery Filter with Smooth Transitions
 const filterBtns = document.querySelectorAll('.filter-btn');
 const galleryItems = document.querySelectorAll('.gallery-item');
