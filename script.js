@@ -122,6 +122,7 @@ if (!window._faqHandledByInlineScript && document.querySelector('#faq')) {
         const category = activeCatBtn ? normalize(activeCatBtn.getAttribute('data-category')) : 'all';
 
         let visible = 0;
+        let firstVisibleIndex = -1;
 
         faqItems.forEach((item, idx) => {
             const itemCat = normalize(item.getAttribute('data-category')) || 'all';
@@ -135,6 +136,7 @@ if (!window._faqHandledByInlineScript && document.querySelector('#faq')) {
 
             if (shouldShow) {
                 item.classList.remove('hidden');
+                if (firstVisibleIndex === -1) firstVisibleIndex = idx;
                 visible++;
             } else {
                 item.classList.add('hidden');
@@ -148,6 +150,12 @@ if (!window._faqHandledByInlineScript && document.querySelector('#faq')) {
         });
 
         if (faqNoResults) faqNoResults.classList.toggle('show', visible === 0);
+
+        // If exactly one result is visible, open it automatically for faster access
+        if (visible === 1 && firstVisibleIndex !== -1 && activeIndex !== firstVisibleIndex) {
+            const header = faqItems[firstVisibleIndex].querySelector('.faq-header');
+            if (header) header.click();
+        }
     }
 
     // Wire up search
