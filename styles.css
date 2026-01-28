@@ -2487,6 +2487,7 @@ footer .container {
     .btn-secondary {
         width: 100%;
         justify-content: center;
+        min-height: 56px;
     }
 
     .section-title {
@@ -2500,6 +2501,20 @@ footer .container {
 
     .cta-section h2 {
         font-size: 1.8rem;
+    }
+
+    /* Improve tap targets and readability on small screens */
+    .nav-links a {
+        padding: 1rem 1.25rem;
+        font-size: 1.05rem;
+    }
+
+    .cta-button, .portfolio-btn, .gallery-btn, .filter-btn {
+        min-height: 56px;
+    }
+
+    .testimonial-card, .service-card, .contact-card {
+        padding: 1.25rem;
     }
 
     .hero-features {
