@@ -2907,6 +2907,8 @@ footer .container {
     }
 
     .cta-button {
-        display: none;
+        display: inline-flex;
+        gap: 0.5rem;
+        align-items: center;
     }
 }
