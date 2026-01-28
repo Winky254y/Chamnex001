@@ -103,12 +103,157 @@ navLinksElements.forEach(link => {
 });
 
 // ===== FAQ =====
-// FAQ is implemented inline inside the `#faq` section (scoped styles and script).
-// To avoid duplicate listeners and conflicts, do not initialize FAQ behavior here if the
-// markup already contains handlers. This is a safe no-op placeholder.
 if (!window._faqHandledByInlineScript && document.querySelector('#faq')) {
-    // mark as handled to avoid accidental re-init
     window._faqHandledByInlineScript = true;
+
+    const faqSearch = document.getElementById('faqSearch');
+    const faqFilterBtns = Array.from(document.querySelectorAll('.faq-filter-btn'));
+    const faqItems = Array.from(document.querySelectorAll('.faq-item'));
+    const faqNoResults = document.getElementById('faqNoResults');
+    let activeIndex = null;
+
+    function normalize(str) {
+        return (str || '').toString().toLowerCase().trim();
+    }
+
+    function updateFAQVisibility() {
+        const search = faqSearch ? normalize(faqSearch.value) : '';
+        const activeCatBtn = faqFilterBtns.find(b => b.classList.contains('active'));
+        const category = activeCatBtn ? normalize(activeCatBtn.getAttribute('data-category')) : 'all';
+
+        let visible = 0;
+        let firstVisibleIndex = -1;
+
+        faqItems.forEach((item, idx) => {
+            const itemCat = normalize(item.getAttribute('data-category')) || 'all';
+            const q = normalize(item.querySelector('h3')?.textContent);
+            const a = normalize(item.querySelector('.faq-content')?.textContent);
+
+            const matchesCategory = category === 'all' || itemCat === category;
+            const matchesSearch = !search || q.includes(search) || a.includes(search);
+
+            const shouldShow = matchesCategory && matchesSearch;
+
+            if (shouldShow) {
+                item.classList.remove('hidden');
+                if (firstVisibleIndex === -1) firstVisibleIndex = idx;
+                visible++;
+            } else {
+                item.classList.add('hidden');
+                // close if hidden
+                item.classList.remove('active');
+                const content = item.querySelector('.faq-content');
+                if (content) content.style.maxHeight = null;
+                const toggle = item.querySelector('.faq-toggle');
+                const headerEl = item.querySelector('.faq-header');
+                if (toggle) toggle.classList.remove('open');
+                if (headerEl) headerEl.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        if (faqNoResults) faqNoResults.classList.toggle('show', visible === 0);
+
+        // If exactly one result is visible, open it automatically for faster access
+        if (visible === 1 && firstVisibleIndex !== -1 && activeIndex !== firstVisibleIndex) {
+            const header = faqItems[firstVisibleIndex].querySelector('.faq-header');
+            if (header) header.click();
+        }
+    }
+
+    // Wire up search
+    if (faqSearch) {
+        faqSearch.addEventListener('input', () => {
+            updateFAQVisibility();
+        });
+    }
+
+    // Category buttons
+    faqFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            faqFilterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateFAQVisibility();
+        });
+    });
+
+    // Accordion behavior (single-open)
+    faqItems.forEach((item, idx) => {
+        const header = item.querySelector('.faq-header');
+        const content = item.querySelector('.faq-content');
+        const toggle = item.querySelector('.faq-toggle');
+
+        if (!header || !content) return;
+
+        header.setAttribute('role', 'button');
+        header.setAttribute('tabindex', '0');
+        header.setAttribute('aria-expanded', 'false');
+
+        // Use an inline chevron SVG for the toggle and ensure consistent markup
+        const chevronSVG = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>';
+        if (toggle) toggle.innerHTML = chevronSVG;
+
+        function closeItem(i) {
+            const it = faqItems[i];
+            if (!it) return;
+            it.classList.remove('active');
+            const c = it.querySelector('.faq-content');
+            if (c) c.style.maxHeight = null;
+            const t = it.querySelector('.faq-toggle');
+            const h = it.querySelector('.faq-header');
+            if (t) t.classList.remove('open');
+            if (h) h.setAttribute('aria-expanded', 'false');
+        }
+
+        function openItem(i) {
+            const it = faqItems[i];
+            if (!it) return;
+            it.classList.add('active');
+            const c = it.querySelector('.faq-content');
+            if (c) c.style.maxHeight = c.scrollHeight + 'px';
+            const t = it.querySelector('.faq-toggle');
+            const h = it.querySelector('.faq-header');
+            if (t) t.classList.add('open');
+            if (h) h.setAttribute('aria-expanded', 'true');
+        }
+
+        function toggleItem() {
+            if (activeIndex === idx) {
+                closeItem(idx);
+                activeIndex = null;
+            } else {
+                if (activeIndex !== null) closeItem(activeIndex);
+                openItem(idx);
+                activeIndex = idx;
+            }
+        }
+
+        header.addEventListener('click', toggleItem);
+        header.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleItem();
+            }
+        });
+    });
+
+    // Intersection observer for reveal animations
+    try {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(en => {
+                if (en.isIntersecting) {
+                    en.target.classList.add('animate-in');
+                    io.unobserve(en.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        faqItems.forEach(i => io.observe(i));
+    } catch (err) {
+        // ignore if IntersectionObserver not available
+    }
+
+    // Initialize visibility
+    updateFAQVisibility();
 }
 
 // ===== CONTACT FORM HANDLING WITH EMAIL =====
