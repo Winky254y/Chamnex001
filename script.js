@@ -145,7 +145,9 @@ if (!window._faqHandledByInlineScript && document.querySelector('#faq')) {
                 const content = item.querySelector('.faq-content');
                 if (content) content.style.maxHeight = null;
                 const toggle = item.querySelector('.faq-toggle');
-                if (toggle) toggle.textContent = '+';
+                const headerEl = item.querySelector('.faq-header');
+                if (toggle) toggle.classList.remove('open');
+                if (headerEl) headerEl.setAttribute('aria-expanded', 'false');
             }
         });
 
@@ -184,6 +186,11 @@ if (!window._faqHandledByInlineScript && document.querySelector('#faq')) {
 
         header.setAttribute('role', 'button');
         header.setAttribute('tabindex', '0');
+        header.setAttribute('aria-expanded', 'false');
+
+        // Use an inline chevron SVG for the toggle and ensure consistent markup
+        const chevronSVG = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>';
+        if (toggle) toggle.innerHTML = chevronSVG;
 
         function closeItem(i) {
             const it = faqItems[i];
@@ -192,7 +199,9 @@ if (!window._faqHandledByInlineScript && document.querySelector('#faq')) {
             const c = it.querySelector('.faq-content');
             if (c) c.style.maxHeight = null;
             const t = it.querySelector('.faq-toggle');
-            if (t) t.textContent = '+';
+            const h = it.querySelector('.faq-header');
+            if (t) t.classList.remove('open');
+            if (h) h.setAttribute('aria-expanded', 'false');
         }
 
         function openItem(i) {
@@ -202,7 +211,9 @@ if (!window._faqHandledByInlineScript && document.querySelector('#faq')) {
             const c = it.querySelector('.faq-content');
             if (c) c.style.maxHeight = c.scrollHeight + 'px';
             const t = it.querySelector('.faq-toggle');
-            if (t) t.textContent = '−';
+            const h = it.querySelector('.faq-header');
+            if (t) t.classList.add('open');
+            if (h) h.setAttribute('aria-expanded', 'true');
         }
 
         function toggleItem() {
