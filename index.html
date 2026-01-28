@@ -664,173 +664,215 @@
 
     <!-- FAQ Section -->
     <section class="faq-section" id="faq">
+        <div class="faq-hero">
+            <h1>FREQUENTLY ASKED QUESTIONS</h1>
+            <p>Common Questions</p>
+        </div>
+
         <div class="container">
-            <p class="section-label">FREQUENTLY ASKED QUESTIONS</p>
-            <h2 class="section-title">Common <span class="highlight">Questions</span></h2>
-            <p class="section-subtitle">Find answers to your most asked questions about our services</p>
-
-            <!-- FAQ Search/Filter -->
-            <div class="faq-search-container">
-                <input type="text" id="faqSearch" class="faq-search" placeholder="🔍 Search questions..." aria-label="Search FAQ questions">
-                <div class="faq-category-filters">
-                    <button class="faq-filter-btn active" data-category="all">All</button>
-                    <button class="faq-filter-btn" data-category="solar">Solar</button>
-                    <button class="faq-filter-btn" data-category="electrical">Electrical</button>
-                    <button class="faq-filter-btn" data-category="service">Service</button>
-                </div>
+            <div class="search-bar">
+                <input type="text" id="faqSearch" placeholder="🔍 Search questions..." onkeyup="filterFAQs()">
             </div>
 
-            <div class="faq-grid">
-                <!-- Solar FAQs -->
-                <div class="faq-item" data-category="solar">
-                    <div class="faq-header">
-                        <div class="faq-icon">☀️</div>
-                        <h3>How much does a solar installation cost?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Costs depend on system size, equipment quality and installation complexity. Typical residential 3–5kW systems range from KES 300,000 to KES 1,200,000. We offer a free site survey and provide a tailored written quote.</p>
-                    </div>
-                </div>
-
-                <!-- Service FAQs -->
-                <div class="faq-item" data-category="service">
-                    <div class="faq-header">
-                        <div class="faq-icon">✅</div>
-                        <h3>What's your warranty on installations?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Manufacturer warranties vary: panels 10–25 years, inverters 5–10 years. Our workmanship warranty is provided with every contract (typically 2–5 years). We include full warranty documentation in your proposal.</p>
-                    </div>
-                </div>
-
-                <!-- Electrical FAQs -->
-                <div class="faq-item" data-category="electrical">
-                    <div class="faq-header">
-                        <div class="faq-icon">🚨</div>
-                        <h3>Do you offer emergency services?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Yes — we provide 24/7 emergency response for critical electrical faults. Call our hotline and we will dispatch a technician; non-urgent work is scheduled during normal business hours.</p>
-                    </div>
-                </div>
-
-                <!-- Service FAQs -->
-                <div class="faq-item" data-category="service">
-                    <div class="faq-header">
-                        <div class="faq-icon">⏱️</div>
-                        <h3>How long does installation take?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Small lighting jobs: 1 day. A typical residential solar installation (3–5kW): 2–4 days. Large commercial projects are scheduled with a detailed timeline included in your quote.</p>
-                    </div>
-                </div>
-
-                <!-- Service FAQs -->
-                <div class="faq-item" data-category="service">
-                    <div class="faq-header">
-                        <div class="faq-icon">💳</div>
-                        <h3>Do you provide financing options?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Yes — we can arrange financing and payment plans. We accept M-Pesa deposits for convenience. Financing availability and terms depend on project size; we discuss options during the survey.</p>
-                    </div>
-                </div>
-
-                <!-- Electrical FAQs -->
-                <div class="faq-item" data-category="electrical">
-                    <div class="faq-header">
-                        <div class="faq-icon">📜</div>
-                        <h3>Are you licensed and insured?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Yes. Our technicians are EPRA-licensed and we carry liability insurance. License numbers and insurance details are available on request and included in formal proposals.</p>
-                    </div>
-                </div>
-
-                <!-- Solar FAQs -->
-                <div class="faq-item" data-category="solar">
-                    <div class="faq-header">
-                        <div class="faq-icon">🌧️</div>
-                        <h3>Do solar panels work in rainy weather?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Yes — panels produce power in cloudy conditions but at reduced output. We size systems to account for seasonal and local weather, ensuring reliable performance year-round.</p>
-                    </div>
-                </div>
-
-                <!-- Solar FAQs -->
-                <div class="faq-item" data-category="solar">
-                    <div class="faq-header">
-                        <div class="faq-icon">🔋</div>
-                        <h3>How long do solar batteries last?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Battery lifespan depends on chemistry and depth-of-discharge. Typical lithium batteries last 8–15 years; LiFePO4 can reach 10–20 years with proper care. We include warranty and maintenance advice with each system.</p>
-                    </div>
-                </div>
-
-                <!-- Electrical FAQs -->
-                <div class="faq-item" data-category="electrical">
-                    <div class="faq-header">
-                        <div class="faq-icon">⚡</div>
-                        <h3>What causes frequent power outages in homes?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Typical causes: overloaded circuits, aging or damaged wiring, faulty consumer units, and external distribution faults. We diagnose the root cause and deliver code-compliant repairs or upgrades to improve safety and reliability.</p>
-                    </div>
-                </div>
-
-                <!-- Service FAQs -->
-                <div class="faq-item" data-category="service">
-                    <div class="faq-header">
-                        <div class="faq-icon">💬</div>
-                        <h3>How can I get a free quotation?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Call or WhatsApp us, or submit the contact form. We’ll schedule a free site visit, assess your requirements, and provide a written, no-obligation quotation with options and pricing.</p>
-                    </div>
-                </div>
-
-                <!-- Solar FAQs -->
-                <div class="faq-item" data-category="solar">
-                    <div class="faq-header">
-                        <div class="faq-icon">📊</div>
-                        <h3>How much money will I save with solar?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Savings vary with consumption and system size. Many customers reduce grid costs by 60–90%; a 5kW system commonly pays back in 3–6 years. We include a projected savings model with every quote.</p>
-                    </div>
-                </div>
-
-                <!-- Electrical FAQs -->
-                <div class="faq-item" data-category="electrical">
-                    <div class="faq-header">
-                        <div class="faq-icon">🏠</div>
-                        <h3>Do I need a home rewiring?</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Not always. We inspect your system and recommend rewiring only when necessary — typically for older homes (25–30+ years), recurring faults, or when adding significant new loads. Recommendations and costs are provided after inspection.</p>
-                    </div>
-                </div>
+            <div class="categories">
+                <button class="category-btn active" onclick="filterCategory('all')">All</button>
+                <button class="category-btn" onclick="filterCategory('solar')">Solar</button>
+                <button class="category-btn" onclick="filterCategory('electrical')">Electrical</button>
+                <button class="category-btn" onclick="filterCategory('service')">Service</button>
+                <button class="category-btn" onclick="filterCategory('emergency')">Emergency</button>
+                <button class="category-btn" onclick="filterCategory('financing')">Financing</button>
             </div>
 
-            <!-- FAQ No Results Message -->
-            <div class="faq-no-results" id="faqNoResults">
-                <p>No matching questions. Try a different search or choose a category.</p>
+            <div class="faq-list" id="faqList">
+
+                <!-- Solar -->
+                <div class="faq-item" data-category="solar">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">☀️</span> How much does a solar installation cost?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Costs vary depending on system size, location, and energy needs. A typical 5kW residential system in Nairobi costs between KSh 650,000 – 1,200,000 (including panels, inverter, batteries, and installation). We offer free site assessments and customized quotes.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="solar">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">☁️</span> Do solar panels work in rainy weather?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Solar panels still generate electricity on cloudy or rainy days (though less than on sunny days). Modern panels work efficiently even in diffused light. Kenya's sunny climate makes solar very reliable year-round.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="solar">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">🔋</span> How long do solar batteries last?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Lithium-ion batteries typically last 10–15 years (or 5,000–10,000 cycles). Lead-acid batteries last 5–7 years. We recommend quality lithium batteries for longer life and better performance.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="solar">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">💰</span> How much money will I save with solar?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most clients save 60–90% on electricity bills within the first year. A 5kW system can save KSh 15,000–40,000 per month depending on usage. Payback period is usually 3–6 years.</p>
+                    </div>
+                </div>
+
+                <!-- Electrical -->
+                <div class="faq-item" data-category="electrical">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">⚡</span> What causes frequent power outages in homes?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Common causes: faulty wiring, overloaded circuits, old distribution boards, poor earthing, or utility supply issues. We diagnose and fix these quickly with professional rewiring and surge protection.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="electrical">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">🏠</span> Do I need a home rewiring?
+                    </div>
+                    <div class="faq-answer">
+                        <p>If your house is over 15–20 years old, has frequent tripping, flickering lights, hot outlets, or uses old aluminum wiring, yes — rewiring is recommended for safety and to support modern appliances/solar.</p>
+                    </div>
+                </div>
+
+                <!-- Service -->
+                <div class="faq-item" data-category="service">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">✅</span> What's your warranty on installations?
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer 2–5 years on workmanship, 10–25 years on solar panels (manufacturer warranty), and 5–10 years on inverters/batteries depending on brand. Full terms provided in contract.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="service">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">🚨</span> Do you offer emergency services?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We provide 24/7 emergency electrical and solar repair services in Nairobi and surrounding areas. Call our hotline for immediate response.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="service">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">📞</span> How can I get a free quotation?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Fill the form on our Contact page, WhatsApp us, or call. We’ll schedule a free site visit within 24–48 hours to assess your needs and provide a no-obligation quote.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="service">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">📜</span> Are you licensed and insured?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes — fully licensed by EPRA (Energy and Petroleum Regulatory Authority) for solar and electrical works, and insured for public liability and workers' compensation.</p>
+                    </div>
+                </div>
+
+                <!-- Emergency -->
+                <div class="faq-item" data-category="emergency">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">🛠️</span> What should I do during a power surge?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Unplug sensitive devices immediately, avoid resetting breakers repeatedly, and call us for surge protection assessment and installation of SPDs (surge protective devices).</p>
+                    </div>
+                </div>
+
+                <!-- Financing -->
+                <div class="faq-item" data-category="financing">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">💳</span> Do you provide financing options?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes — we partner with banks, M-Shwari, and solar financing programs for flexible payment plans, including 12–36 months installment options with low or zero interest for qualified customers.</p>
+                    </div>
+                </div>
+
+                <!-- Additional questions -->
+                <div class="faq-item" data-category="solar">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">🌡️</span> Will solar work during blackouts?
+                    </div>
+                    <div class="faq-answer">
+                        <p>With a hybrid/inverter system and battery backup — yes! You can have power even when KPLC is off. Grid-tied systems without batteries shut down during outages for safety.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="electrical">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">🔌</span> Do you install smart home wiring?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes — we specialize in modern smart wiring for lighting, security, and energy monitoring compatible with solar systems and home automation (Google Home, Alexa, etc.).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="service">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span class="icon">🧹</span> Do you offer maintenance services?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes — annual maintenance packages include panel cleaning, inverter checks, battery health tests, and system optimization to keep your solar/electrical setup performing at peak efficiency.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
+
+        <script>
+            function toggleFAQ(element) {
+                const answer = element.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+
+                document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.faq-question').forEach(el => el.classList.remove('active'));
+
+                if (!isActive) {
+                    answer.classList.add('active');
+                    element.classList.add('active');
+                }
+            }
+
+            function filterCategory(category) {
+                document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Re-run search filter after category change
+                filterFAQs();
+            }
+
+            function filterFAQs() {
+                const input = document.getElementById('faqSearch').value.toLowerCase();
+                const items = document.querySelectorAll('.faq-item');
+
+                items.forEach(item => {
+                    const questionText = item.querySelector('.faq-question').textContent.toLowerCase();
+                    if (questionText.includes(input)) {
+                        item.style.display = item.style.display !== 'none' ? 'block' : 'none';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+        </script>
     </section>
 
     <!-- Contact Form Section -->
